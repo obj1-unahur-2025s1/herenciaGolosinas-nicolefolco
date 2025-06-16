@@ -1,3 +1,4 @@
+import mariano.*
 /*
  * Los sabores
  */
@@ -84,6 +85,22 @@ class Oblea {
 	method libreGluten() { return false }
 }
 
+class ObleaCrujiente inherits Oblea {
+	var cantidadMordiscos = 0
+      
+	override method mordisco() {
+		 super()
+		 cantidadMordiscos += 1
+		 if(cantidadMordiscos <= 3) {
+			peso -= 3
+		 }
+	  }
+
+	method estaDebil() {
+		return cantidadMordiscos > 3
+	}
+}
+
 class Chocolatin {
 	// hay que acordarse de *dos* cosas, el peso inicial y el peso actual
 	// el precio se calcula a partir del precio inicial
@@ -98,6 +115,22 @@ class Chocolatin {
 	method sabor() { return chocolate }
 	method libreGluten() { return false }
 
+}
+
+class ChocolatinVIP inherits Chocolatin {
+    override method peso() {
+	  return super() * (1 + self.humedad())
+	}
+
+	method humedad() {
+		return heladera.humedad()
+	}
+}
+
+class ChocolatinPremium inherits ChocolatinVIP {
+	override method humedad() {
+        return super() / 2
+	}
 }
 
 class GolosinaBaniada {

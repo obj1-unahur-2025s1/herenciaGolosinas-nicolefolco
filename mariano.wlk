@@ -63,4 +63,15 @@ object mariano {
 	method tieneGolosinaDeSabor(_sabor) {
 		return golosinas.any({_golosina => _golosina.sabor() == _sabor})
 	}
+
+    method baniar(unaGolosina) {
+		const nuevaGol = new GolosinaBaniada(golosinaInterior = unaGolosina)
+		if(!golosinas.any({ g => nuevaGol}))
+		golosinas.add(nuevaGol)
+	}
+ 
+}
+
+object heladera {
+	var property humedad = 0
 }
